@@ -32,7 +32,7 @@ $logo           = $this->params->get('logo');
 $navposition    = $this->params->get('navposition');
 $headerImage    = $this->params->get('headerImage');
 $config         = JFactory::getConfig();
-$bootstrap      = explode(',', $this->params->get('bootstrap'));
+$bootstrap      = explode(',', $this->params->get('bootstrap', ''));
 $option         = JFactory::getApplication()->input->getCmd('option', '');
 
 // Output as HTML5

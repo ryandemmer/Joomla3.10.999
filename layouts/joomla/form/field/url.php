@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\String\PunycodeHelper;
+
 extract($displayData);
 
 /**
@@ -63,11 +65,12 @@ $attributes = array(
 	!empty($maxLength) ? $maxLength : '',
 	$required ? ' required aria-required="true"' : '',
 );
+/**
+ * @deprecated  4.3 will be removed in 6.0
+ *              The unicode conversion of the URL will be moved to \Joomla\CMS\Form\Field\UrlField::getLayoutData
+ */
+if ($value !== null) {
+    $value = $this->escape(PunycodeHelper::urlToUTF8($value));
+}
 ?>
-<input <?php
-echo $inputType; ?> name="<?php
-echo $name; ?>" <?php
-echo !empty($class) ? ' class="' . $class . '"' : ''; ?> id="<?php
-echo $id; ?>" value="<?php
-echo htmlspecialchars(JStringPunycode::urlToUTF8($value), ENT_COMPAT, 'UTF-8'); ?>" <?php
-echo implode(' ', $attributes); ?> />
+<input <?php echo $inputType; ?> inputmode="url" name="<?php echo $name; ?>" <?php echo !empty($class) ? ' class="form-control ' . $class . '"' : 'class="form-control"'; ?> id="<?php echo $id; ?>" value="<?php echo $value; ?>" <?php echo implode(' ', $attributes); ?>>

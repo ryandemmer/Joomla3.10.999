@@ -247,10 +247,20 @@ class JFormFieldCalendar extends JFormField
 		// Format value when not nulldate ('0000-00-00 00:00:00'), otherwise blank it as it would result in 1970-01-01.
 		if ($this->value && $this->value != JFactory::getDbo()->getNullDate() && strtotime($this->value) !== false)
 		{
-			$tz = date_default_timezone_get();
+			/*$tz = date_default_timezone_get();
 			date_default_timezone_set('UTC');
 			$this->value = strftime($this->format, strtotime($this->value));
-			date_default_timezone_set($tz);
+			date_default_timezone_set($tz);*/
+
+			// Create a DateTime object from $this->value with the original timezone
+			$dateTime = new DateTime($this->value, new DateTimeZone(date_default_timezone_get()));
+
+			// Change the DateTime object's timezone to UTC
+			$dateTime->setTimezone(new DateTimeZone('UTC'));
+
+			// Format the DateTime object according to $this->format
+			// Note: Ensure $this->format uses date() format codes as DateTime::format() does not support strftime() codes.
+			$this->value = $dateTime->format($this->format);
 		}
 		else
 		{

@@ -34,6 +34,10 @@ class FieldsHelper
 	 */
 	public static function extract($contextString, $item = null)
 	{
+		if ($contextString === null) {
+            return null;
+        }
+		
 		$parts = explode('.', $contextString, 2);
 
 		if (count($parts) < 2)

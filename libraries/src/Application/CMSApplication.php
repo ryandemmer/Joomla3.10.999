@@ -167,10 +167,9 @@ class CMSApplication extends WebApplication
 	public function enqueueMessage($msg, $type = 'message')
 	{
 		// Don't add empty messages.
-		if (trim($msg) === '')
-		{
-			return;
-		}
+        if ($msg === null || trim($msg) === '') {
+            return;
+        }
 
 		$inputFilter = InputFilter::getInstance(array(), array(), 1, 1);
 

@@ -39,7 +39,7 @@ class ConfigControllerModulesCancel extends ConfigControllerCanceladmin
 		$this->context = 'com_config.config.global';
 
 		// Get returnUri
-		$returnUri = $this->input->post->get('return', null, 'base64');
+		$returnUri = $this->input->post->get('return', '', 'base64');
 
 		if (!empty($returnUri))
 		{

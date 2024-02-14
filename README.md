@@ -7,6 +7,8 @@ Like it or not, Joomla 3.10.x series is now end of support, but still powers a h
 
 This follows the success of https://github.com/PhilETaylor/Joomla1.5.999 and https://github.com/PhilETaylor/Joomla1.5.999
 
+** This repo attempts to make Joomla 3.10.999 PHP 8.1 compatible **
+
 History
 =============
  - Upgraded to Joomla 3.10.12 - Released on Tuesday, 11 July 2023 16:00 - just a version bump and new cacert.pem files. NOT a security release! Please see the [official projects FAQ](https://docs.joomla.org/Special:MyLanguage/J3.x:Joomla_3.10.12_Release_FAQ)

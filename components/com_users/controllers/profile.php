@@ -184,7 +184,7 @@ class UsersControllerProfile extends UsersController
 				// Redirect back to the edit screen.
 				$this->setMessage(JText::_('COM_USERS_PROFILE_SAVE_SUCCESS'));
 
-				$redirect = $app->getUserState('com_users.edit.profile.redirect');
+				$redirect = $app->getUserState('com_users.edit.profile.redirect', '');
 
 				// Don't redirect to an external URL.
 				if (!JUri::isInternal($redirect))
@@ -212,7 +212,7 @@ class UsersControllerProfile extends UsersController
 				// Clear the profile id from the session.
 				$app->setUserState('com_users.edit.profile.id', null);
 
-				$redirect = $app->getUserState('com_users.edit.profile.redirect');
+				$redirect = $app->getUserState('com_users.edit.profile.redirect', '');
 
 				// Don't redirect to an external URL.
 				if (!JUri::isInternal($redirect))

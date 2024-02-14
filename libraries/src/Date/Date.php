@@ -104,6 +104,11 @@ class Date extends \DateTime
 			}
 		}
 
+		// Ensure $date is never null; use 'now' as default
+		if ($date === null) {
+			$date = 'now';
+		}
+
 		// If the date is numeric assume a unix timestamp and convert it.
 		date_default_timezone_set('UTC');
 		$date = is_numeric($date) ? date('c', $date) : $date;

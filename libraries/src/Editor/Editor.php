@@ -365,6 +365,11 @@ class Editor extends \JObject
 
 		foreach ($results as $result)
 		{
+			if (is_null($result))
+			{
+				continue;
+			}
+			
 			if (trim($result))
 			{
 				$return .= $result;

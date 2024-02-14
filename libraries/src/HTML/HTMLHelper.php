@@ -1045,10 +1045,22 @@ abstract class HTMLHelper
 		// Format value when not nulldate ('0000-00-00 00:00:00'), otherwise blank it as it would result in 1970-01-01.
 		if ($value && $value !== Factory::getDbo()->getNullDate() && strtotime($value) !== false)
 		{
-			$tz = date_default_timezone_get();
+			/*$tz = date_default_timezone_get();
 			date_default_timezone_set('UTC');
 			$inputvalue = strftime($format, strtotime($value));
-			date_default_timezone_set($tz);
+			date_default_timezone_set($tz);*/
+
+			// Create a DateTime object from the input value. Assuming $value is in the default timezone.
+			// Convert it immediately to a DateTime object specifying the original timezone.
+			$dateTime = new DateTime($value, new DateTimeZone($tz));
+
+			// Set the timezone of the DateTime object to UTC
+			$dateTime->setTimezone(new DateTimeZone('UTC'));
+
+			// Format the DateTime object according to the provided format
+			// Make sure to adjust $format to use date() format codes if it was originally using strftime() codes.
+			$inputValue = $dateTime->format($format);
+
 		}
 		else
 		{

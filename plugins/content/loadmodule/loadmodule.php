@@ -41,6 +41,11 @@ class PlgContentLoadmodule extends JPlugin
 			return true;
 		}
 
+		if ($article->text === '')
+		{
+			return true;
+		}
+
 		// Simple performance check to determine whether bot should process further
 		if (strpos($article->text, 'loadposition') === false && strpos($article->text, 'loadmodule') === false)
 		{
